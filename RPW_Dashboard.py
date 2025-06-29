@@ -1,18 +1,28 @@
-# RPW_Dashboard.py
 import streamlit as st
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
 from PIL import Image
+import zipfile
+
+# -------- AUTO EXTRACT DATA.ZIP IF NEEDED --------
+if not os.path.exists("data"):
+    if os.path.exists("data.zip"):
+        with zipfile.ZipFile("data.zip", "r") as zip_ref:
+            zip_ref.extractall("data")
+        st.info("✅ Extracted data.zip into 'data/' folder.")
+    else:
+        st.error("❌ No 'data' folder or 'data.zip' found. Please upload your data.")
+        st.stop()
 
 # -------- CONFIG --------
-DATA_DIR = "D:/Data"  # Change this to the correct full path if needed
+DATA_DIR = "data"  # Now pointing to the unzipped folder
 
 if not os.path.exists(DATA_DIR):
     st.error(f"DATA_DIR not found: {DATA_DIR}")
     st.stop()
 
-# -------- SETUP --------
+# Set page config
 st.set_page_config(layout="wide")
 st.title("🌴 Palm Health Dashboard")
 
