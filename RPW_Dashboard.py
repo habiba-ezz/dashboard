@@ -6,17 +6,17 @@ from PIL import Image
 import zipfile
 
 # -------- AUTO EXTRACT DATA.ZIP IF NEEDED --------
-if not os.path.exists("data"):
-    if os.path.exists("data.zip"):
-        with zipfile.ZipFile("data.zip", "r") as zip_ref:
-            zip_ref.extractall("data")
-        st.info("✅ Extracted data.zip into 'data/' folder.")
+if not os.path.exists("Data"):
+    if os.path.exists("Data.zip"):
+        with zipfile.ZipFile("Data.zip", "r") as zip_ref:
+            zip_ref.extractall("Data")
+        st.info("✅ Extracted Data.zip into 'Data/' folder.")
     else:
-        st.error("❌ No 'data' folder or 'data.zip' found. Please upload your data.")
+        st.error("❌ No 'Data' folder or 'Data.zip' found. Please upload your data.")
         st.stop()
 
 # -------- CONFIG --------
-DATA_DIR = "data"  # Now pointing to the unzipped folder
+DATA_DIR = "Data"  # Now pointing to the unzipped folder
 
 if not os.path.exists(DATA_DIR):
     st.error(f"DATA_DIR not found: {DATA_DIR}")
